@@ -2,7 +2,7 @@
  * Plugin: TimeKeeper
  * Author: Sundarasan Natarajan
  * GIT: https://github.com/Sujsun/timekeeper.git
- * Version: 0.0.1
+ * Version: 0.0.2
  */
 (function (root, factory) {
 
@@ -215,6 +215,9 @@
     if (!window.Date.parse) {
       window.Date.parse = this._Date.parse;
     }
+    if (!window.Date.UTC) {
+      window.Date.UTC = this._Date.UTC;
+    }
   };
 
   TimeKeeper.prototype.releaseDate = function () {
@@ -345,7 +348,7 @@
   };
 
   TimeKeeper.prototype._findDifferenceInMillis = function (serverDateInMillis) {
-    this._differenceInMillis = this._getMachineDateMillis() - serverDateInMillis;
+    this._differenceInMillis = serverDateInMillis - this._getMachineDateMillis();
   };
 
   function createInstance (options) {
